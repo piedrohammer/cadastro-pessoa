@@ -4,6 +4,7 @@ import com.example.cadastro_api.core.entities.Pessoa;
 import com.example.cadastro_api.core.gateways.PessoaGateway;
 import com.example.cadastro_api.infra.persistence.entities.PessoaEntity;
 import com.example.cadastro_api.infra.persistence.repositories.PessoaRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,9 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class PessoaRepositoryGateway implements PessoaGateway {
+
+    // Classe para chamar os metodos no Repository
+
 
     private final PessoaRepository pessoaRepository;
     private final PessoaEntityMapper entityMapper;
@@ -40,5 +44,14 @@ public class PessoaRepositoryGateway implements PessoaGateway {
                 .stream()
                 .map(entityMapper::toPessoa)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    //transação ativa para a operação de remoção, que geralmente é necessária ao tentar excluir uma entidade. Para resolver isso, você precisa garantir que o método de exclusão seja executado dentro de uma transação.
+    //Solução: Adicionar Anotação @Transactional
+    //A anotação @Transactional no método de exclusão garante que ele seja executado em uma transação. Você pode adicioná-la na implementação do caso de uso de exclusão ou no método deleteByCpfCnpj do PessoaRepositoryGateway.
+    public void deleteByCpfCnpj(String cpfCnpj) {
+        pessoaRepository.deleteByCpfCnpj(cpfCnpj);
     }
 }

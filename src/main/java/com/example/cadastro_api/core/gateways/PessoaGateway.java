@@ -11,4 +11,6 @@ public interface PessoaGateway {
     Pessoa findByCpfCnpj(String cpfCnpj);
 
     List<Pessoa> obtainAllPessoas();
+
+    void deleteByCpfCnpj(String cpfCnpj);
 }

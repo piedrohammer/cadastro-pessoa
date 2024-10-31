@@ -17,4 +17,5 @@ public class GetAllPessoasUseCaseImp implements  GetAllPessoasUseCase {
     public List<Pessoa> execute() {
         return pessoaGateway.obtainAllPessoas();
     }
+
 }
