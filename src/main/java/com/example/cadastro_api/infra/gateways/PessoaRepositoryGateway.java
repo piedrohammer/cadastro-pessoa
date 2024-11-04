@@ -17,7 +17,6 @@ public class PessoaRepositoryGateway implements PessoaGateway {
 
     // Classe para chamar os metodos no Repository
 
-
     private final PessoaRepository pessoaRepository;
     private final PessoaEntityMapper entityMapper;
 
@@ -53,5 +52,18 @@ public class PessoaRepositoryGateway implements PessoaGateway {
     //A anotação @Transactional no método de exclusão garante que ele seja executado em uma transação. Você pode adicioná-la na implementação do caso de uso de exclusão ou no método deleteByCpfCnpj do PessoaRepositoryGateway.
     public void deleteByCpfCnpj(String cpfCnpj) {
         pessoaRepository.deleteByCpfCnpj(cpfCnpj);
+    }
+
+    @Override
+    @Transactional
+    public Pessoa updatePessoa(Pessoa pessoa) {
+        PessoaEntity entity = entityMapper.toEntity(pessoa);
+        PessoaEntity updatedEntity = pessoaRepository.save(entity); // Salva a entidade com o novo email
+        return entityMapper.toPessoa(updatedEntity);
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return pessoaRepository.existsByEmail(email);
     }
 }

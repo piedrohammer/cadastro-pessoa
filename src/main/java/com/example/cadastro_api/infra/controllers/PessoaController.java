@@ -1,12 +1,10 @@
 package com.example.cadastro_api.infra.controllers;
 
 import com.example.cadastro_api.core.entities.Pessoa;
-import com.example.cadastro_api.core.usecases.CreatePessoaUseCase;
-import com.example.cadastro_api.core.usecases.DeletePessoaUseCase;
-import com.example.cadastro_api.core.usecases.FindByCpfPessoaUseCase;
-import com.example.cadastro_api.core.usecases.GetAllPessoasUseCase;
+import com.example.cadastro_api.core.usecases.*;
 import com.example.cadastro_api.infra.dtos.PessoaDto;
 import com.example.cadastro_api.infra.dtos.PessoaDtoMapper;
+import com.example.cadastro_api.infra.dtos.UpdateEmailRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +20,7 @@ public class PessoaController {
     private final GetAllPessoasUseCase getAllPessoasUseCase;
     private final FindByCpfPessoaUseCase findByCpfPessoaUseCase;
     private final DeletePessoaUseCase deletePessoaUseCase;
+    private final UpdatePessoaEmailUseCase updatePessoaEmailUseCase;
     private final PessoaDtoMapper pessoaDtoMapper;
 
     @PostMapping
@@ -46,6 +45,12 @@ public class PessoaController {
     @DeleteMapping("/{cpfCnpj}")
     public void deletePessoaByCpf(@PathVariable String cpfCnpj) {
         deletePessoaUseCase.deleteByCpfCnpj(cpfCnpj);
+    }
+
+    @PutMapping("/{cpfCnpj}/email")
+    public PessoaDto updateEmail(@PathVariable String cpfCnpj, @RequestBody UpdateEmailRequest request) {
+        Pessoa pessoaAtualizada = updatePessoaEmailUseCase.execute(cpfCnpj, request.getNovoEmail());
+        return pessoaDtoMapper.toDto(pessoaAtualizada);
     }
 }
 

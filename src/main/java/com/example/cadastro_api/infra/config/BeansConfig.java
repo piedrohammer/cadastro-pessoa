@@ -30,4 +30,9 @@ public class BeansConfig {
     public DeletePessoaUseCase deletePessoaUseCase(PessoaGateway pessoaGateway){
         return new DeletePessoaUseCaseImp(pessoaGateway);
     }
+
+    @Bean
+    public UpdatePessoaEmailUseCase updatePessoaEmailUseCase(PessoaGateway pessoaGateway){
+        return new UpdatePessoaEmailUseCaseImp(pessoaGateway);
+    }
 }

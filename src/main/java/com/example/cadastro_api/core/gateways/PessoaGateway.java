@@ -13,4 +13,8 @@ public interface PessoaGateway {
     List<Pessoa> obtainAllPessoas();
 
     void deleteByCpfCnpj(String cpfCnpj);
+
+    Pessoa updatePessoa(Pessoa pessoa);
+
+    boolean existsByEmail(String email); // Verifica se o email já existe
 }
