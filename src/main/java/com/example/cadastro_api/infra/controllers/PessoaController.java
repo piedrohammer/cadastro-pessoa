@@ -6,8 +6,10 @@ import com.example.cadastro_api.infra.dtos.PessoaDto;
 import com.example.cadastro_api.infra.dtos.PessoaDtoMapper;
 import com.example.cadastro_api.infra.dtos.UpdateEmailRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +26,7 @@ public class PessoaController {
     private final PessoaDtoMapper pessoaDtoMapper;
 
     @PostMapping
-    public PessoaDto createPessoa(@RequestBody PessoaDto pessoaDto) {
+    public PessoaDto createPessoa(@Valid @RequestBody PessoaDto pessoaDto) {
         Pessoa novoPessoa = createPessoaUseCase.execute(pessoaDtoMapper.toEntity(pessoaDto));
         return pessoaDtoMapper.toDto(novoPessoa);
     }

@@ -12,8 +12,9 @@ import lombok.NoArgsConstructor;
 @Data
 @Table(name = "TB_PESSOA")
 public class PessoaEntity {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String email;
