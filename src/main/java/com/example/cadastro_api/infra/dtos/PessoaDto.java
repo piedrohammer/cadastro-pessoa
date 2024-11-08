@@ -6,9 +6,9 @@ import com.example.cadastro_api.core.validators.ValidEmail;
 
 public record PessoaDto(
         String nome,
-        @ValidEmail
+        @ValidEmail // -> validação personalizada
         String email,
-        @ValidCpfCnpj
+        @ValidCpfCnpj // -> validação personalizada
         String cpfCnpj,
         EnumTypePessoa type
 ) {

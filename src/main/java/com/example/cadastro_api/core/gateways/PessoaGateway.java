@@ -16,5 +16,5 @@ public interface PessoaGateway {
 
     Pessoa updatePessoa(Pessoa pessoa);
 
-    boolean existsByEmail(String email); // Verifica se o email já existe
+    boolean existsByEmail(String email);
 }

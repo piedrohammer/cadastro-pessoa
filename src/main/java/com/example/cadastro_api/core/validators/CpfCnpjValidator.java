@@ -5,6 +5,8 @@ import javax.validation.ConstraintValidatorContext;
 
 public class CpfCnpjValidator implements ConstraintValidator<ValidCpfCnpj, String> {
 
+    //Criei as validções pois eu queria uma validação personalizada
+    //para conseguir validar o cpf e o cnpj no mesmo atributo que é o cpfCnpj
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if (value == null || value.trim().isEmpty()) {

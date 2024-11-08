@@ -10,12 +10,12 @@ import com.example.cadastro_api.core.validators.EmailValidator;
 public class CreatePessoaUseCaseImp implements CreatePessoaUseCase {
 
     private final PessoaGateway pessoaGateway;
-    private final CpfCnpjValidator cpfCnpjValidator; // Validador adicionado
+    private final CpfCnpjValidator cpfCnpjValidator;
     private final EmailValidator emailValidator;
 
     public CreatePessoaUseCaseImp(PessoaGateway pessoaGateway, CpfCnpjValidator cpfCnpjValidator, EmailValidator emailValidator) {
         this.pessoaGateway = pessoaGateway;
-        this.cpfCnpjValidator = cpfCnpjValidator; // Inicialização do validador
+        this.cpfCnpjValidator = cpfCnpjValidator;
         this.emailValidator = emailValidator;
     }
 

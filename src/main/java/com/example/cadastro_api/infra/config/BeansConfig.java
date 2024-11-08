@@ -2,7 +2,7 @@ package com.example.cadastro_api.infra.config;
 
 import com.example.cadastro_api.core.gateways.PessoaGateway;
 import com.example.cadastro_api.core.usecases.*;
-import com.example.cadastro_api.core.validators.CpfCnpjValidator; // Importar o validador
+import com.example.cadastro_api.core.validators.CpfCnpjValidator;
 import com.example.cadastro_api.core.validators.EmailValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
